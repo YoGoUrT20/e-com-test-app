@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12 mb-4">
+        <h1>Welcome to Our Store</h1>
+        <p class="lead">Discover our amazing products at great prices!</p>
+    </div>
+</div>
+
+<div class="row">
+    {% for product in products.items %}
+    <div class="col-md-4 mb-4">
+        <div class="card product-card h-100">
+            {% if product.image_path %}
+            <img src="{{ url_for('static', filename=product.image_path) }}" class="card-img-top product-image" alt="{{ product.name }}">
+            {% else %}
+            <img src="{{ url_for('static', filename='images/placeholder.jpg') }}" class="card-img-top product-image" alt="Placeholder">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text">{{ product.description[:100] }}...</p>
+                <p class="card-text"><strong>${{ "%.2f"|format(product.price) }}</strong></p>
+                <a href="{{ url_for('main.product', id=product.id) }}" class="btn btn-primary">
+                    <i class="bi bi-eye"></i> View Details
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<nav aria-label="Page navigation" class="mt-4">
+    <ul class="pagination justify-content-center">
+        {% if products.has_prev %}
+        <li class="page-item">
+            <a class="page-link" href="{{ url_for('main.index', page=products.prev_num) }}">Previous</a>
+        </li>
+        {% endif %}
+        
+        {% for page in products.iter_pages() %}
+            {% if page %}
+                <li class="page-item {% if page == products.page %}active{% endif %}">
+                    <a class="page-link" href="{{ url_for('main.index', page=page) }}">{{ page }}</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled"><span class="page-link">...</span></li>
+            {% endif %}
+        {% endfor %}
+        
+        {% if products.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="{{ url_for('main.index', page=products.next_num) }}">Next</a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endblock %} 

@@ -1,0 +1,41 @@
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+.product-card {
+    transition: transform 0.2s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.product-image {
+    height: 200px;
+    object-fit: cover;
+}
+
+.cart-item {
+    border-bottom: 1px solid #eee;
+    padding: 1rem 0;
+}
+
+.order-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.footer {
+    margin-top: auto;
+    background-color: #f8f9fa;
+    padding: 1rem 0;
+} 

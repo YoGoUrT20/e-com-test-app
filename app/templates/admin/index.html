@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12 mb-4">
+        <h1>Admin Dashboard</h1>
+        <p class="lead">Welcome to the admin panel</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Products</h5>
+                <p class="card-text">Manage your product catalog</p>
+                <a href="{{ url_for('admin.products') }}" class="btn btn-primary">
+                    <i class="bi bi-box"></i> View Products
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Orders</h5>
+                <p class="card-text">View and manage orders</p>
+                <a href="{{ url_for('admin.orders') }}" class="btn btn-primary">
+                    <i class="bi bi-bag"></i> View Orders
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Users</h5>
+                <p class="card-text">Manage user accounts</p>
+                <a href="{{ url_for('admin.users') }}" class="btn btn-primary">
+                    <i class="bi bi-people"></i> View Users
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
