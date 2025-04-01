@@ -22,14 +22,14 @@ def create_app(config_class=Config):
     login_manager.login_view = 'auth.login'
     login_manager.login_message_category = 'info'
 
-    from app.auth import auth as auth_blueprint
-    from app.main import main as main_blueprint
-    from app.admin import admin as admin_blueprint
+    from app.auth import auth
+    from app.main import bp as main_blueprint
+    from app.admin import bp as admin_blueprint
     from app.products import products as products_blueprint
-    from app.cart import cart as cart_blueprint
-    from app.orders import orders as orders_blueprint
+    from app.cart import bp as cart_blueprint
+    from app.orders import bp as orders_blueprint
 
-    app.register_blueprint(auth_blueprint, url_prefix='/auth')
+    app.register_blueprint(auth, url_prefix='/auth')
     app.register_blueprint(main_blueprint)
     app.register_blueprint(admin_blueprint, url_prefix='/admin')
     app.register_blueprint(products_blueprint, url_prefix='/products')
